@@ -1,0 +1,8 @@
+Package: thelounge
+Version: 1.99.4-1
+Section: net
+Priority: optional
+Architecture: all
+Depends: nodejs (>= 4)
+Maintainer: Maxime Poulin <thelounge@max-p.me>
+Description: A self-hosted, web-based IRC client
