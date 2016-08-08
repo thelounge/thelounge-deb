@@ -2,13 +2,13 @@
 cd $(dirname ${BASH_SOURCE[0]})
 
 # Some variables
-DEBVERSION=1.99.4-1
+DEBVERSION=1.99.5-1
 STARTDIR="$(pwd)"
 DESTDIR="$STARTDIR/pkg"
 OUTDIR="$STARTDIR/deb"
 
 # Install the package itself
-npm install -g --prefix "$DESTDIR/usr" thelounge@2.0.0-pre.4
+npm install -g --prefix "$DESTDIR/usr" thelounge@2.0.0-pre.5
 
 # Install configuration/home directory
 install -dm775 "$DESTDIR/etc/thelounge"
