@@ -3,10 +3,10 @@ Description=The Lounge IRC client
 After=network.target
 
 [Service]
-User=thelounge
-Group=thelounge
+User=lounge
+Group=lounge
 Type=simple
-ExecStart=/usr/bin/lounge --home /etc/thelounge
+ExecStart=/usr/bin/lounge --home /etc/lounge
 ProtectSystem=yes
 ProtectHome=yes
 NoNewPrivileges=yes

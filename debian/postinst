@@ -3,17 +3,17 @@ set -e
 
 [[ "$1" == "configure" ]] || exit 0
 
-if ! getent group thelounge >/dev/null; then
-	addgroup --quiet --system thelounge
+if ! getent group lounge >/dev/null; then
+	addgroup --quiet --system lounge
 fi
 
-if ! getent passwd thelounge >/dev/null; then
-	adduser --quiet --system thelounge \
-		--ingroup thelounge \
-		--home /etc/thelounge/ \
-		--gecos "thelounge system user"
+if ! getent passwd lounge >/dev/null; then
+	adduser --quiet --system lounge \
+		--ingroup lounge \
+		--home /etc/lounge/ \
+		--gecos "lounge system user"
 fi
 
-chown -R thelounge:thelounge /etc/thelounge
+chown -R lounge:lounge /etc/lounge
 systemctl daemon-reload
-systemctl start thelounge.service
+systemctl start lounge.service

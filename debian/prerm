@@ -1,2 +1,2 @@
 #!/bin/bash
-systemctl stop thelounge.service
+systemctl stop lounge.service
