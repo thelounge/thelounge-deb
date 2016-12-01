@@ -1,0 +1,36 @@
+#!/bin/bash
+cd $(dirname ${BASH_SOURCE[0]})
+
+# Some variables
+DEBVERSION=2.0.1-1
+STARTDIR="$(pwd)"
+DESTDIR="$STARTDIR/pkg"
+OUTDIR="$STARTDIR/deb"
+
+# Install the package itself
+npm install -g --prefix "$DESTDIR/usr" thelounge@2.0.1
+
+# Install configuration/home directory
+install -dm775 "$DESTDIR/etc/lounge"
+install -dm770 "$DESTDIR/etc/lounge/users"
+install -Dm660 \
+	"$DESTDIR/usr/lib/node_modules/thelounge/defaults/config.js" \
+	"$DESTDIR/etc/lounge/config.js"
+
+# Install systemd units
+install -Dm644 "$STARTDIR/systemd/system.service" \
+	"$DESTDIR/lib/systemd/system/lounge.service"
+install -Dm644 "$STARTDIR/systemd/user.service" \
+	"$DESTDIR/usr/lib/systemd/user/lounge.service"
+install -dm755 "$DESTDIR/lib/systemd/system/multi-user.target.wants"
+ln -s "../lounge.service" \
+	"$DESTDIR/lib/systemd/system/multi-user.target.wants/lounge.service" 
+
+# Remove all references to the build directory/host
+grep -FRlZ "$STARTDIR" "$DESTDIR" | \
+	xargs -0 -- sed -i "s|$STARTDIR|/|g"
+
+# Build .deb
+mkdir "$DESTDIR/DEBIAN" "$OUTDIR"
+cp "$STARTDIR/debian/"* "$DESTDIR/DEBIAN/"
+dpkg-deb --build "$DESTDIR" "$OUTDIR/"

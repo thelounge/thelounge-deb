@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+
+[[ "$1" == "configure" ]] || exit 0
+
+if ! getent group lounge >/dev/null; then
+	addgroup --quiet --system lounge
+fi
+
+if ! getent passwd lounge >/dev/null; then
+	adduser --quiet --system lounge \
+		--ingroup lounge \
+		--home /etc/lounge/ \
+		--gecos "lounge system user"
+fi
+
+chown -R lounge:lounge /etc/lounge
+systemctl daemon-reload
+systemctl start lounge.service

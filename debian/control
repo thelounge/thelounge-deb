@@ -1,0 +1,8 @@
+Package: lounge
+Version: 2.0.1-1
+Section: net
+Priority: optional
+Architecture: all
+Depends: nodejs (>= 4), bash
+Maintainer: Maxime Poulin <thelounge@max-p.me>
+Description: A self-hosted, web-based IRC client
