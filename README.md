@@ -8,7 +8,7 @@ If you are looking to simply install The Lounge, please use our pre-compiled bin
 
 ```sh
 # Clone the repository
-git clone https://github.com/thelounge/arch-lounge.git
+git clone https://github.com/thelounge/deb-lounge.git
 cd deb-lounge
 
 # Call the build script
