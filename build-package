@@ -33,4 +33,4 @@ grep -FRlZ "$STARTDIR" "$DESTDIR" | \
 # Build .deb
 mkdir "$DESTDIR/DEBIAN" "$OUTDIR"
 cp "$STARTDIR/debian/"* "$DESTDIR/DEBIAN/"
-dpkg-deb --build "$DESTDIR" "$OUTDIR/"
+dpkg-deb --build "$DESTDIR" "$OUTDIR"
