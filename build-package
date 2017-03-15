@@ -2,7 +2,7 @@
 cd $(dirname ${BASH_SOURCE[0]})
 
 # Some variables
-DEBVERSION=2.0.1-1
+DEBVERSION=2.2.2-1
 STARTDIR="$(pwd)"
 DESTDIR="$STARTDIR/pkg"
 OUTDIR="$STARTDIR/deb"
@@ -11,7 +11,7 @@ OUTDIR="$STARTDIR/deb"
 rm -rf "$DESTDIR"
 
 # Install the package itself
-npm install -g --prefix "$DESTDIR/usr" thelounge@2.0.1
+npm install -g --prefix "$DESTDIR/usr" thelounge@2.2.2
 
 # Install configuration/home directory
 install -dm775 "$DESTDIR/etc/lounge"
@@ -27,7 +27,7 @@ install -Dm644 "$STARTDIR/systemd/user.service" \
 	"$DESTDIR/usr/lib/systemd/user/lounge.service"
 install -dm755 "$DESTDIR/lib/systemd/system/multi-user.target.wants"
 ln -s "../lounge.service" \
-	"$DESTDIR/lib/systemd/system/multi-user.target.wants/lounge.service" 
+	"$DESTDIR/lib/systemd/system/multi-user.target.wants/lounge.service"
 
 # Remove all references to the build directory/host
 grep -FRlZ "$STARTDIR" "$DESTDIR" | \
