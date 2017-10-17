@@ -2,7 +2,7 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" || exit
 
 # Some variables
-DEBVERSION=2.2.2-1
+DEBVERSION=2.5.0-1
 STARTDIR="$(pwd)"
 DESTDIR="$STARTDIR/pkg"
 OUTDIR="$STARTDIR/deb"
@@ -11,7 +11,7 @@ OUTDIR="$STARTDIR/deb"
 rm -rf "$DESTDIR"
 
 # Install the package itself
-npm install -g --prefix "$DESTDIR/usr" thelounge@2.2.2
+npm install -g --prefix "$DESTDIR/usr" thelounge@2.5.0
 
 # Write .lounge_home to set correct system config directory
 echo "/etc/lounge" > "$DESTDIR/usr/lib/node_modules/thelounge/.lounge_home"
