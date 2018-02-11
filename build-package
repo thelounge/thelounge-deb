@@ -2,7 +2,7 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" || exit
 
 # Some variables
-DEBVERSION=2.5.0-1
+NPMVERSION=`grep Version debian/control | awk -F': ' '{print $2}' | sed -E 's/-[0-9]+$//'`
 STARTDIR="$(pwd)"
 DESTDIR="$STARTDIR/pkg"
 OUTDIR="$STARTDIR/deb"
@@ -11,7 +11,7 @@ OUTDIR="$STARTDIR/deb"
 rm -rf "$DESTDIR"
 
 # Install the package itself
-npm install -g --prefix "$DESTDIR/usr" thelounge@2.5.0
+npm install -g --prefix "$DESTDIR/usr" thelounge@${NPMVERSION}
 
 # Write .lounge_home to set correct system config directory
 echo "/etc/lounge" > "$DESTDIR/usr/lib/node_modules/thelounge/.lounge_home"
