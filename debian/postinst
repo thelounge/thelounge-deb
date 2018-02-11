@@ -10,8 +10,8 @@ fi
 if ! getent passwd lounge >/dev/null; then
 	adduser --quiet --system lounge \
 		--ingroup lounge \
-		--home /etc/lounge/ \
-		--gecos "lounge system user"
+		--no-create-home \
+		--gecos "System user for The Lounge (IRC client)"
 fi
 
 chown -R lounge:lounge /etc/lounge
