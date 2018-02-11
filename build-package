@@ -13,8 +13,8 @@ rm -rf "$DESTDIR"
 # Install the package itself
 npm install -g --prefix "$DESTDIR/usr" thelounge@${NPMVERSION}
 
-# Write .lounge_home to set correct system config directory
-echo "/etc/lounge" > "$DESTDIR/usr/lib/node_modules/thelounge/.lounge_home"
+# Write .thelounge_home to set correct system config directory
+echo "/etc/lounge" > "$DESTDIR/usr/lib/node_modules/thelounge/.thelounge_home"
 
 # Install configuration/home directory
 install -dm775 "$DESTDIR/etc/lounge"
