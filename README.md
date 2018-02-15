@@ -1,9 +1,16 @@
 # Debian/Ubuntu package for The Lounge
 
+<a href="https://travis-ci.org/thelounge/deb-lounge">
+	<img
+		alt="Travis CI Build Status"
+		src="https://img.shields.io/travis/thelounge/deb-lounge/master.svg?style=flat-square">
+</a>
+
 This repository holds out the build scripts that generates our `.deb` precompiled packages and also tracks Debian-specific issues in relation to the packaging.
 
 
 ## Installation
+
 If you are looking to simply install The Lounge, please use our pre-compiled binary .deb files available in the releases section of the main project. This section assumes you want to build a Debian package from sources.
 
 ```sh
