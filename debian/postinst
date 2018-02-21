@@ -3,17 +3,17 @@ set -e
 
 [[ "$1" == "configure" ]] || exit 0
 
-if ! getent group lounge >/dev/null; then
-	addgroup --quiet --system lounge
+if ! getent group thelounge >/dev/null; then
+	addgroup --quiet --system thelounge
 fi
 
-if ! getent passwd lounge >/dev/null; then
-	adduser --quiet --system lounge \
-		--ingroup lounge \
+if ! getent passwd thelounge >/dev/null; then
+	adduser --quiet --system thelounge \
+		--ingroup thelounge \
 		--no-create-home \
 		--gecos "System user for The Lounge (IRC client)"
 fi
 
-chown -R lounge:lounge /etc/lounge
+chown -R thelounge:thelounge /etc/thelounge
 systemctl daemon-reload
-systemctl start lounge.service
+systemctl start thelounge.service

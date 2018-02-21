@@ -21,7 +21,7 @@ before_script:
 
 script:
   - ./tests.sh
-  - sudo systemctl --full status lounge.service
+  - sudo systemctl --full status thelounge.service
 
 deploy:
   - provider: releases

@@ -1,8 +1,8 @@
-Package: lounge
-Version: 2.7.1-1
+Package: thelounge
+Version: 3.0.0-pre.1-1
 Section: net
 Priority: optional
 Architecture: all
-Depends: nodejs (>= 4), bash
+Depends: nodejs (>= 6), bash
 Maintainer: Maxime Poulin <thelounge@max-p.me>
 Description: A self-hosted, web-based IRC client
