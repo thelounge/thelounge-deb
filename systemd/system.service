@@ -3,8 +3,8 @@ Description=The Lounge (IRC client)
 After=network.target
 
 [Service]
-User=lounge
-Group=lounge
+User=thelounge
+Group=thelounge
 Type=simple
 ExecStart=/usr/bin/thelounge start
 ProtectSystem=yes

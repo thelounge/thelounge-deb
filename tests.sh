@@ -2,7 +2,7 @@
 
 # Extract version to build from the repo
 DEBVERSION=`grep Version debian/control | awk -F': ' '{print $2}'`
-DEBFILE="deb/lounge_${DEBVERSION}_all.deb"
+DEBFILE="deb/thelounge_${DEBVERSION}_all.deb"
 NPMVERSION=`echo "${DEBVERSION}" | sed -E 's/-[0-9]+$//'`
 
 # Exit status code to update if there is a failure
@@ -45,7 +45,7 @@ fi
 
 # If the service was correctly set up with systemd, it should show in the big
 # `sudo systemctl` list.
-SYSTEMCTL_LIST=`sudo systemctl | grep "lounge.service"`
+SYSTEMCTL_LIST=`sudo systemctl | grep "thelounge.service"`
 if [[ "$SYSTEMCTL_LIST" = *"The Lounge (IRC client)"* ]]; then
   echo -e "  \x1B[32m✓\x1B[0m \x1B[90mcorrectly shows up in systemctl list\x1B[0m"
 else
@@ -59,7 +59,7 @@ fi
 # Wait until The Lounge is actually fully started
 sleep 2
 # Entire entry for the service. We'll use this to see if everything is in order.
-SYSTEMCTL_STATUS=`sudo systemctl status --full lounge.service`
+SYSTEMCTL_STATUS=`sudo systemctl status --full thelounge.service`
 
 # `systemctl status` should report `Active: active (running) since ...`
 SYSTEMCTL_ACTIVE=`echo "${SYSTEMCTL_STATUS}" | grep "Active:"`
@@ -96,11 +96,11 @@ else
 fi
 
 SYSTEMCTL_CONFIG=`echo "${SYSTEMCTL_STATUS}" | grep "Configuration file:"`
-if [[ "$SYSTEMCTL_CONFIG" = *"/etc/lounge/config.js"* ]]; then
+if [[ "$SYSTEMCTL_CONFIG" = *"/etc/thelounge/config.js"* ]]; then
   echo -e "  \x1B[32m✓\x1B[0m \x1B[90mshows correct configuration path in systemctl logs\x1B[0m"
 else
   echo -e "  \x1B[31m✗ does not show up correct version in systemctl logs\x1B[0m"
-  echo -e "      \x1B[32mexpected: Configuration file: /etc/lounge/config.js\x1B[0m"
+  echo -e "      \x1B[32mexpected: Configuration file: /etc/thelounge/config.js\x1B[0m"
   echo -e "      \x1B[31mactual:   ${SYSTEMCTL_CONFIG}\x1B[0m"
   echo
   CODE=1

@@ -14,23 +14,23 @@ rm -rf "$DESTDIR"
 npm install -g --prefix "$DESTDIR/usr" thelounge@${NPMVERSION}
 
 # Write .thelounge_home to set correct system config directory
-echo "/etc/lounge" > "$DESTDIR/usr/lib/node_modules/thelounge/.thelounge_home"
+echo "/etc/thelounge" > "$DESTDIR/usr/lib/node_modules/thelounge/.thelounge_home"
 
 # Install configuration/home directory
-install -dm775 "$DESTDIR/etc/lounge"
-install -dm770 "$DESTDIR/etc/lounge/users"
+install -dm775 "$DESTDIR/etc/thelounge"
+install -dm770 "$DESTDIR/etc/thelounge/users"
 install -Dm660 \
 	"$DESTDIR/usr/lib/node_modules/thelounge/defaults/config.js" \
-	"$DESTDIR/etc/lounge/config.js"
+	"$DESTDIR/etc/thelounge/config.js"
 
 # Install systemd units
 install -Dm644 "$STARTDIR/systemd/system.service" \
-	"$DESTDIR/lib/systemd/system/lounge.service"
+	"$DESTDIR/lib/systemd/system/thelounge.service"
 install -Dm644 "$STARTDIR/systemd/user.service" \
-	"$DESTDIR/usr/lib/systemd/user/lounge.service"
+	"$DESTDIR/usr/lib/systemd/user/thelounge.service"
 install -dm755 "$DESTDIR/lib/systemd/system/multi-user.target.wants"
-ln -s "../lounge.service" \
-	"$DESTDIR/lib/systemd/system/multi-user.target.wants/lounge.service"
+ln -s "../thelounge.service" \
+	"$DESTDIR/lib/systemd/system/multi-user.target.wants/thelounge.service"
 
 # Remove all references to the build directory/host
 grep -FRlZ "$STARTDIR" "$DESTDIR" | \
