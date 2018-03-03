@@ -6,3 +6,5 @@ Architecture: all
 Depends: nodejs (>= 6), bash
 Maintainer: Maxime Poulin <thelounge@max-p.me>
 Description: A self-hosted, web-based IRC client
+Homepage: https://thelounge.chat
+Bugs: https://github.com/thelounge/thelounge/issues
