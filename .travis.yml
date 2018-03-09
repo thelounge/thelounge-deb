@@ -33,11 +33,11 @@ deploy:
     skip_cleanup: true
     on:
       condition: "$NODE_VERSION = 8"
-      repo: thelounge/deb-lounge
+      repo: thelounge/thelounge-deb
       tags: true
 
   - provider: releases
-    repo: thelounge/deb-lounge
+    repo: thelounge/thelounge-deb
     api_key:
       secure: U7v68GwbhCWHga2kwmgt+JnbujJGj4mC8yK58HvxSj2/u7OQI6vTdGssDfg0XFyOFcCzjfsup69yZLmXoLxSJOocNurt+CCgmAoPGF+qU3r3UsGU6TNvbxI4FbycHZ7JYB7A6wxdqz9FWKmtMpAXDVVZAnSqyrojqez7io54MaciaGFJp1VZf6L/VP9vQhghl4AX087SMLWKB2o8whUFzyKHpI8rajZj6zsQ9n9J10Wk2fmT6phK/glCOkrUUnds/IHmyz7LF9NiXxgMQsmkI6bqv8FgctMB5jWON7WzCcXcYZG7XrZne1YUIpTuukfAXhYiCjiDKaLADOk59oRcpPc/37x4yi0s8r/EFYEaz4wvcw9uzko/WSk1hQFVTNMlvQpDT2Bc5MdFyACPK/y/jgyKfO1uxiMYP6c9baSdTkjuMOO0ju6fnZTWrGsqnMvON85JE6xoA69VpWy8sylOksyd0/OysA6bjG8yZeUGSlLENy1ZcexAg+3G3s9ghkDROgANcZqAxHJQ2VjmcvQzScTSKtRnRXl56ZtPfhbthakUHwC9Pt3pgue8xQPf7nawB0B+LGhlkekiqOihfR1fBypqFMQyhlpETnJQLg7mlqMQvbw0GgxzBMlp4aAAjq077G5q4rJBS73CfSW25ndRJ1wLj88KIBsLqP+FSAHISkA=
     file: deb/*.deb
@@ -45,5 +45,5 @@ deploy:
     skip_cleanup: true
     on:
       condition: "$NODE_VERSION = 8"
-      repo: thelounge/deb-lounge
+      repo: thelounge/thelounge-deb
       tags: true
