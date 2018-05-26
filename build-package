@@ -34,10 +34,6 @@ install -dm755 "$DESTDIR/lib/systemd/system/multi-user.target.wants"
 ln -s "../thelounge.service" \
 	"$DESTDIR/lib/systemd/system/multi-user.target.wants/thelounge.service"
 
-# Remove all references to the build directory/host
-grep -FRlZ "$STARTDIR" "$DESTDIR" | \
-	xargs -0 -- sed -i "s|$STARTDIR|/|g"
-
 # Build .deb
 mkdir "$DESTDIR/DEBIAN" "$OUTDIR"
 cp "$STARTDIR/debian/"* "$DESTDIR/DEBIAN/"
