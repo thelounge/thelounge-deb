@@ -3,7 +3,7 @@ Version: 3.0.0-pre.5-1
 Section: net
 Priority: optional
 Architecture: all
-Depends: nodejs (>= 6), bash
+Depends: nodejs (>= 6), bash, sqlite3
 Maintainer: Maxime Poulin <thelounge@max-p.me>
 Description: A self-hosted, web-based IRC client
 Homepage: https://thelounge.chat
