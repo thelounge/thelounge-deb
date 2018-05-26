@@ -7,6 +7,8 @@ STARTDIR="$(pwd)"
 DESTDIR="$STARTDIR/pkg"
 OUTDIR="$STARTDIR/deb"
 
+echo "Building $NPMVERSION..."
+
 # Remove potential leftovers from a previous build
 rm -rf "$DESTDIR" "$OUTDIR"
 
