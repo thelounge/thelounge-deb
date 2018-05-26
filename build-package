@@ -8,7 +8,7 @@ DESTDIR="$STARTDIR/pkg"
 OUTDIR="$STARTDIR/deb"
 
 # Remove potential leftovers from a previous build
-rm -rf "$DESTDIR"
+rm -rf "$DESTDIR" "$OUTDIR"
 
 # Install the package itself
 npm install -g --prefix "$DESTDIR/usr" thelounge@${NPMVERSION}
