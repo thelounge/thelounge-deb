@@ -20,8 +20,10 @@ before_script:
   - sudo dpkg -i deb/*.deb
 
 script:
-  - ./tests.sh
+  - sleep 2 # Wait until The Lounge is actually fully started
   - sudo systemctl --full status thelounge.service
+  - thelounge
+  - ./tests.sh
 
 deploy:
   - provider: releases
