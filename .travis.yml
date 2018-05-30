@@ -1,28 +1,22 @@
 dist: xenial
 sudo: required
 
-language: minimal
+language: node_js
 
-env:
-  # At the moment, only Node.js v8 is enabled, because of stability issues with
-  # Travis CI + Xenial causing builds to randomly fail. Bigger matrices mean
-  # higher chances of having some jobs failing.
-  # - NODE_VERSION=9 # Current stable
-  - NODE_VERSION=8 # Active LTS until April 2019
-  # - NODE_VERSION=6 # Active LTS until April 2018
+node_js:
+- 8 # Active LTS until April 2019
+
+addons:
+  apt:
+    update: true
 
 install:
-  - curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | sudo -E bash -
-  - sudo apt-get install -y nodejs
-
-before_script:
   - ./build-package
   - sudo dpkg -i deb/*.deb
 
 script:
   - sleep 2 # Wait until The Lounge is actually fully started
   - sudo systemctl --full status thelounge.service
-  - thelounge
   - ./tests.sh
 
 deploy:
@@ -34,7 +28,6 @@ deploy:
     file_glob: true
     skip_cleanup: true
     on:
-      condition: "$NODE_VERSION = 8"
       repo: thelounge/thelounge-deb
       tags: true
 
@@ -46,6 +39,5 @@ deploy:
     file_glob: true
     skip_cleanup: true
     on:
-      condition: "$NODE_VERSION = 8"
       repo: thelounge/thelounge-deb
       tags: true
