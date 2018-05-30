@@ -1,19 +1,28 @@
 #!/bin/bash
-cd "$(dirname "${BASH_SOURCE[0]}")" || exit
+set -euo pipefail
+
+cd "${0%/*}"
 
 # Some variables
-NPMVERSION=`grep Version debian/control | awk -F': ' '{print $2}' | sed -E 's/-[0-9]+$//'`
+NPMVERSION=$(grep Version debian/control | awk -F': ' '{print $2}' | sed -E 's/-[0-9]+$//')
 STARTDIR="$(pwd)"
 DESTDIR="$STARTDIR/pkg"
 OUTDIR="$STARTDIR/deb"
 
-echo "Building $NPMVERSION..."
+echo "Building $NPMVERSION"
 
 # Remove potential leftovers from a previous build
 rm -rf "$DESTDIR" "$OUTDIR"
 
 # Install the package itself
-npm install -g --prefix "$DESTDIR/usr" thelounge@${NPMVERSION}
+npm install -g --prefix "$DESTDIR/usr" "thelounge@${NPMVERSION}"
+
+# Copy Node binary
+cp -a "$(type -p node)" "$DESTDIR/usr/lib/node_modules/thelounge/node_thelounge"
+
+# Overwrite symlink created by npm with our start script
+rm "$DESTDIR/usr/bin/thelounge"
+cp -a start.sh "$DESTDIR/usr/bin/thelounge"
 
 # Write .thelounge_home to set correct system config directory
 echo "/etc/thelounge" > "$DESTDIR/usr/lib/node_modules/thelounge/.thelounge_home"
