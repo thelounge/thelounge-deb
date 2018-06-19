@@ -3,6 +3,11 @@ set -e
 
 [[ "$1" == "configure" ]] || exit 0
 
+sudo npm install sqlite3 \
+	--no-package-lock \
+	--prefix /usr/lib/node_modules/thelounge \
+	--unsafe-perm
+
 if ! getent group thelounge >/dev/null; then
 	addgroup --quiet --system thelounge
 fi
