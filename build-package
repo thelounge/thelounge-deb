@@ -1,8 +1,15 @@
 #!/bin/bash
-cd "$(dirname "${BASH_SOURCE[0]}")" || exit
+
+# Exit the script if any of the commands fail
+set -e
+set -u
+set -o pipefail
+
+# Set working directory to the location of this script
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
 # Some variables
-NPMVERSION=`grep Version debian/control | awk -F': ' '{print $2}' | sed -E 's/-[0-9]+$//'`
+NPMVERSION=$(grep Version debian/control | awk -F': ' '{print $2}' | sed -E 's/-[0-9]+$//')
 STARTDIR="$(pwd)"
 DESTDIR="$STARTDIR/pkg"
 OUTDIR="$STARTDIR/deb"
@@ -13,7 +20,7 @@ echo "Building $NPMVERSION..."
 rm -rf "$DESTDIR" "$OUTDIR"
 
 # Install the package itself
-npm install -g --no-optional --prefix "$DESTDIR/usr" thelounge@${NPMVERSION}
+npm install -g --no-optional --prefix "$DESTDIR/usr" "thelounge@${NPMVERSION}"
 
 # Write .thelounge_home to set correct system config directory
 echo "/etc/thelounge" > "$DESTDIR/usr/lib/node_modules/thelounge/.thelounge_home"
