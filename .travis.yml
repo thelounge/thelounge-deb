@@ -3,13 +3,12 @@ sudo: required
 
 language: minimal
 
+# https://github.com/nodejs/Release
 env:
-  # At the moment, only Node.js v8 is enabled, because of stability issues with
-  # Travis CI + Xenial causing builds to randomly fail. Bigger matrices mean
-  # higher chances of having some jobs failing.
-  # - NODE_VERSION=9 # Current stable
-  - NODE_VERSION=8 # Active LTS until April 2019
-  # - NODE_VERSION=6 # Active LTS until April 2018
+  - NODE_VERSION=11 # EOL: June 2019
+  - NODE_VERSION=10 # EOL: April 2021
+  - NODE_VERSION=8 # EOL: December 2019
+  - NODE_VERSION=6 # EOL: April 2019
 
 install:
   - curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | sudo -E bash -
