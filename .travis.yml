@@ -11,6 +11,11 @@ env:
   - NODE_VERSION=8 # Active LTS until April 2019
   # - NODE_VERSION=6 # Active LTS until April 2018
 
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+
 install:
   - curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | sudo -E bash -
   - sudo apt-get install -y nodejs
