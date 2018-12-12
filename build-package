@@ -25,6 +25,13 @@ npm install -g --no-optional --prefix "$DESTDIR/usr" "thelounge@${NPMVERSION}"
 # Write .thelounge_home to set correct system config directory
 echo "/etc/thelounge" > "$DESTDIR/usr/lib/node_modules/thelounge/.thelounge_home"
 
+# Copy sqlite installer script
+cp -R "$STARTDIR/debian_postinst" "$DESTDIR/usr/lib/node_modules/thelounge/"
+
+# Generate a small package.json with thelounge's sqlite3 version
+# so it can be installed cleanly in postinst on user machine
+node "$DESTDIR/usr/lib/node_modules/thelounge/debian_postinst/sqlite_install.js"
+
 # Install configuration/home directory
 install -dm775 "$DESTDIR/etc/thelounge"
 install -dm770 "$DESTDIR/etc/thelounge/users"
