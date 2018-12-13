@@ -4,7 +4,7 @@ Section: net
 Priority: optional
 Architecture: all
 Depends: nodejs (>= 6.13.0), npm, bash
-Maintainer: Maxime Poulin <thelounge@max-p.me>
+Maintainer: The Lounge maintainers team <security@thelounge.chat>
 Description: A self-hosted, web-based IRC client
 Homepage: https://thelounge.chat
 Bugs: https://github.com/thelounge/thelounge/issues
