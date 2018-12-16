@@ -6,7 +6,7 @@ set -euo pipefail
 echo 'Downloading sqlite3 module for your specific installation'
 
 # Install sqlite3 into a clean folder with yarn binary that comes with The Lounge
-sudo node /usr/lib/node_modules/thelounge/node_modules/yarn/bin/yarn.js \
+node /usr/lib/node_modules/thelounge/node_modules/yarn/bin/yarn.js \
 	--cache-folder /usr/lib/node_modules/thelounge/debian_postinst/yarn_cache \
 	--cwd /usr/lib/node_modules/thelounge/debian_postinst \
 	--non-interactive \
