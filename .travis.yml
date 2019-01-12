@@ -30,7 +30,7 @@ script:
 
 deploy:
   - provider: releases
-    repo: thelounge/thelounge
+    repo: thelounge/thelounge-deb
     api_key:
       secure: cTQSyxl5tLt0ogK/ILtznqU3NCG+BIVi4rCm6LWKht9ilInMb0qq+psx1uc1SyKMMausk9znc/bUKAh3JUGRUgqSZAG0vWGvRqvv23fs9uh0YMoVmixW72hRWeI3lZlYL735/MYZDFf4UTTVPuvKm6slxgDvrDyAW37L2VmDl6tnblhOR5QbKFXSs6E2k9K+XU7vAW9xjuS4qJ0PDkpIdJCUloH4vMBZ9KuFZG0CjkobwdqZTqmhrd8tOprs1c6tEBOWGNQsAC4rYfRXrnZ+y9B/pybN7LGJlONfjSaiszlfbNSm2hTK8Tsg2P6q/kg/SLVlGsaiqKfxB15+3kzSRXXdoCNI4XuhKx2+Vryj5gZ2T5d3KqiL1Zv7qV3PgNaiuh4ITt0nIaH0ilDmWKPYLzmOs/V0dhvtQIC17LXip3O5E3Owv+olo1zi/nhjQydxf6CkuexFnrjK4TaVyC02HSaLmP6i9fGBZNbNKHe6JuB8LBWi+snoJJulcjyxnyZqASrE/sSRqVLwDZMZtmLx1yBDrCCP2AASl4LsxMbAGu0iA/YGFOXOoyytfVAc3FDddpWMnB7s4bZTQfZOy5wDSPyCA/BzFsHMXdHIq3B95TrbjWtoqiuwf0e2CG+23pl95i+5aItY7BrCOJ5O7F26M3Frw3y/3DkXYfQ7mUymx/0=
     file: deb/*.deb
@@ -42,7 +42,7 @@ deploy:
       tags: true
 
   - provider: releases
-    repo: thelounge/thelounge-deb
+    repo: thelounge/thelounge
     api_key:
       secure: cTQSyxl5tLt0ogK/ILtznqU3NCG+BIVi4rCm6LWKht9ilInMb0qq+psx1uc1SyKMMausk9znc/bUKAh3JUGRUgqSZAG0vWGvRqvv23fs9uh0YMoVmixW72hRWeI3lZlYL735/MYZDFf4UTTVPuvKm6slxgDvrDyAW37L2VmDl6tnblhOR5QbKFXSs6E2k9K+XU7vAW9xjuS4qJ0PDkpIdJCUloH4vMBZ9KuFZG0CjkobwdqZTqmhrd8tOprs1c6tEBOWGNQsAC4rYfRXrnZ+y9B/pybN7LGJlONfjSaiszlfbNSm2hTK8Tsg2P6q/kg/SLVlGsaiqKfxB15+3kzSRXXdoCNI4XuhKx2+Vryj5gZ2T5d3KqiL1Zv7qV3PgNaiuh4ITt0nIaH0ilDmWKPYLzmOs/V0dhvtQIC17LXip3O5E3Owv+olo1zi/nhjQydxf6CkuexFnrjK4TaVyC02HSaLmP6i9fGBZNbNKHe6JuB8LBWi+snoJJulcjyxnyZqASrE/sSRqVLwDZMZtmLx1yBDrCCP2AASl4LsxMbAGu0iA/YGFOXOoyytfVAc3FDddpWMnB7s4bZTQfZOy5wDSPyCA/BzFsHMXdHIq3B95TrbjWtoqiuwf0e2CG+23pl95i+5aItY7BrCOJ5O7F26M3Frw3y/3DkXYfQ7mUymx/0=
     file: deb/*.deb
