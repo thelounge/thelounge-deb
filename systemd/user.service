@@ -3,7 +3,8 @@ Description=The Lounge (IRC client)
 
 [Service]
 Type=simple
-ExecStart=THELOUNGE_HOME=~/.thelounge /usr/bin/thelounge start
+Environment=THELOUNGE_HOME=~/.thelounge
+ExecStart=/usr/bin/thelounge start
 
 [Install]
 WantedBy=default.target
