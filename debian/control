@@ -3,7 +3,7 @@ Version: 3.0.0-rc.5-1
 Section: net
 Priority: optional
 Architecture: all
-Depends: nodejs (>= 6.13.0), npm, bash
+Depends: nodejs (>= 6.13.0), bash
 Maintainer: The Lounge maintainers team <security@thelounge.chat>
 Description: A self-hosted, web-based IRC client
 Homepage: https://thelounge.chat

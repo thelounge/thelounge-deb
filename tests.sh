@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Extract version to build from the repo
 DEBVERSION=$(grep Version debian/control | awk -F': ' '{print $2}')
@@ -42,6 +43,14 @@ if [ -e "$DEBFILE" ]; then
   fi
 else
   echo -e "  \\x1B[36m- file size could not be checked\\x1B[0m"
+fi
+
+# sqlite should be installed correctly at runtime
+if [ -e "/usr/lib/node_modules/thelounge/node_modules/sqlite3/package.json" ]; then
+  echo -e "  \\x1B[32m✓\\x1B[0m \\x1B[90msqlite was installed correctly at runtime\\x1B[0m"
+else
+  echo -e "  \\x1B[31m✗ sqlite was not installed at runtime\\x1B[0m"
+  CODE=1
 fi
 
 # If the service was correctly set up with systemd, it should show in the big
