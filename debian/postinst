@@ -39,12 +39,6 @@ if ! getent passwd thelounge >/dev/null; then
 		--gecos "System user for The Lounge (IRC client)"
 fi
 
-# TODO: Remove this in a few versions after v3 to help transitioning
-if [ -f /etc/lounge/config.js ] && [ ! -d /etc/thelounge ]; then
-	mv /etc/lounge /etc/thelounge
-	echo 'The directory /etc/lounge/ has been moved to /etc/thelounge/'
-fi
-
 chown -R thelounge:thelounge /etc/thelounge
 systemctl daemon-reload
 systemctl start thelounge.service
