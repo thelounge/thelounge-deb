@@ -3,7 +3,7 @@ Version: 3.0.1-1
 Section: net
 Priority: optional
 Architecture: all
-Depends: nodejs (>= 6.13.0), bash
+Depends: nodejs (>= 8.10.0), bash
 Provides: lounge
 Conflicts: lounge
 Replaces: lounge
