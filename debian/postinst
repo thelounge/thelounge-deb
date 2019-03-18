@@ -12,7 +12,8 @@ node /usr/lib/node_modules/thelounge/node_modules/yarn/bin/yarn.js \
 	--non-interactive \
 	--no-lockfile \
 	--no-default-rc \
-	--production
+	--production \
+|| echo '[!!] Failed to install sqlite3 module correctly, The Lounge will continue working, but you might want to fix this.'
 
 echo 'Moving sqlite3 module to The Lounge'
 
