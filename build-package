@@ -28,6 +28,7 @@ tar zvxf "$YARNDIR/yarn.tar.gz" -C "$YARNDIR"
 YARNBINARY="$(find "$YARNDIR" -name yarn.js -type f)"
 
 # Install the package itself
+mkdir -p "$DESTDIR/usr/lib/node_modules/thelounge"
 node "$YARNBINARY" \
 	--cache-folder "$YARNDIR" \
 	--cwd "$DESTDIR/usr/lib/node_modules/thelounge" \
