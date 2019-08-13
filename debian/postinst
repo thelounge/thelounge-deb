@@ -7,25 +7,18 @@ echo 'Downloading sqlite3 module for your specific installation'
 
 # Install sqlite3 into a clean folder with yarn binary that comes with The Lounge
 node /usr/lib/node_modules/thelounge/node_modules/yarn/bin/yarn.js \
-	--cache-folder /usr/lib/node_modules/thelounge/debian_postinst/yarn_cache \
-	--cwd /usr/lib/node_modules/thelounge/debian_postinst \
+	--cache-folder /usr/lib/node_modules/thelounge/debian_postinst_yarn_cache \
+	--cwd /usr/lib/node_modules/thelounge \
 	--non-interactive \
 	--no-lockfile \
 	--no-default-rc \
 	--production \
 || echo '[!!] Failed to install sqlite3 module correctly, The Lounge will continue working, but you might want to fix this.'
 
-echo 'Moving sqlite3 module to The Lounge'
-
-# Move sqlite3 module to thelounge without moving modules that are already present
-mv --no-clobber \
-	/usr/lib/node_modules/thelounge/debian_postinst/node_modules/* \
-	/usr/lib/node_modules/thelounge/node_modules/
-
-echo 'Removing leftover files from sqlite3 installation'
+echo 'Removing leftover files'
 
 # Remove left over folder which is no longer required
-rm --recursive --force /usr/lib/node_modules/thelounge/debian_postinst/
+rm --recursive --force /usr/lib/node_modules/thelounge/debian_postinst_yarn_cache/
 
 if ! getent group thelounge >/dev/null; then
 	echo 'Creating thelounge group'
