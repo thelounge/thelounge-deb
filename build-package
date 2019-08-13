@@ -25,7 +25,7 @@ mkdir "$YARNDIR"
 wget https://yarnpkg.com/latest-rc.tar.gz -O "$YARNDIR/yarn.tar.gz"
 tar zvxf "$YARNDIR/yarn.tar.gz" -C "$YARNDIR"
 
-YARNBINARY="$STARTDIR/$(find "$YARNDIR" -name yarn.js -type f)"
+YARNBINARY="$(find "$YARNDIR" -name yarn.js -type f)"
 
 # Install the package itself
 node "$YARNBINARY" \
