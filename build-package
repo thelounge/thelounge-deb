@@ -9,18 +9,33 @@ set -o pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
 # Some variables
-NPMVERSION=$(grep Version debian/control | awk -F': ' '{print $2}' | sed -E 's/-[0-9]+$//')
+THELOUNGEVERSION=$(grep Version debian/control | awk -F': ' '{print $2}' | sed -E 's/-[0-9]+$//')
 STARTDIR="$(pwd)"
 DESTDIR="$STARTDIR/pkg"
 OUTDIR="$STARTDIR/deb"
+YARNDIR="$STARTDIR/yarn"
 
-echo "Building $NPMVERSION..."
+echo "Building $THELOUNGEVERSION..."
 
 # Remove potential leftovers from a previous build
-rm -rf "$DESTDIR" "$OUTDIR"
+rm -rf "$DESTDIR" "$OUTDIR" "$YARNDIR"
+
+# Download Yarn
+mkdir "$YARNDIR"
+wget https://yarnpkg.com/latest-rc.tar.gz -O "$YARNDIR/yarn.tar.gz"
+tar zvxf "$YARNDIR/yarn.tar.gz" -C "$YARNDIR"
+
+YARNBINARY="$STARTDIR/$(find "$YARNDIR" -name yarn.js -type f)"
 
 # Install the package itself
-npm install -g --no-optional --prefix "$DESTDIR/usr" "thelounge@${NPMVERSION}"
+node "$YARNBINARY" \
+	--cache-folder "$YARNDIR" \
+	--cwd "$DESTDIR/usr/lib/node_modules/thelounge" \
+	--non-interactive \
+	--ignore-optional \
+	--no-default-rc \
+	--production \
+	"thelounge@${THELOUNGEVERSION}"
 
 # Write .thelounge_home to set correct system config directory
 echo "/etc/thelounge" > "$DESTDIR/usr/lib/node_modules/thelounge/.thelounge_home"
