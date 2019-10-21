@@ -4,12 +4,8 @@ sudo: required
 language: minimal
 
 env:
-  # At the moment, only Node.js v8 is enabled, because of stability issues with
-  # Travis CI + Xenial causing builds to randomly fail. Bigger matrices mean
-  # higher chances of having some jobs failing.
-  # - NODE_VERSION=9 # Current stable
-  - NODE_VERSION=8 # Active LTS until April 2019
-  # - NODE_VERSION=6 # Active LTS until April 2018
+  - NODE_VERSION=12 # EOL: April 2022
+  - NODE_VERSION=10 # EOL: April 2021
 
 notifications:
   email:
@@ -37,7 +33,7 @@ deploy:
     file_glob: true
     skip_cleanup: true
     on:
-      condition: "$NODE_VERSION = 8"
+      condition: "$NODE_VERSION = 10"
       repo: thelounge/thelounge-deb
       tags: true
 
@@ -49,6 +45,6 @@ deploy:
     file_glob: true
     skip_cleanup: true
     on:
-      condition: "$NODE_VERSION = 8"
+      condition: "$NODE_VERSION = 10"
       repo: thelounge/thelounge-deb
       tags: true
