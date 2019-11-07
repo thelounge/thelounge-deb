@@ -11,6 +11,8 @@ ProtectSystem=yes
 ProtectHome=yes
 NoNewPrivileges=yes
 PrivateTmp=yes
+Restart=on-failure
+RestartSec=90s
 
 [Install]
 WantedBy=multi-user.target
