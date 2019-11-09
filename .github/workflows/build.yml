@@ -17,9 +17,11 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node_version }}
+        env:
+          NODE_VERSION: ${{ matrix.node_version }}
+        run: |
+          curl -sL https://deb.nodesource.com/setup_$NODE_VERSION | sudo -E bash -
+          sudo apt-get install -y nodejs
 
       - name: Build package
         run: ./build-package
