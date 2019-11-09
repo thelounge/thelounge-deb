@@ -1,0 +1,34 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Node ${{ matrix.node_version }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_version: [
+            10.x, # EOL: April 2021
+            12.x, # EOL: April 2022
+          ]
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      - name: Build package
+        run: ./build-package
+
+      - name: Install package
+        run: sudo dpkg -i deb/*.deb
+
+      - name: Test
+        run: ./tests.sh
+
+      - name: Journal
+        run: sudo systemctl --full status thelounge.service
