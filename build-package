@@ -8,8 +8,11 @@ set -o pipefail
 # Set working directory to the location of this script
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
+# Use "~" in place of "-" in NPMVERSION to make dpkg sort pre-releases correctly
+# See https://github.com/thelounge/thelounge-deb/issues/58
+
 # Some variables
-NPMVERSION=$(grep Version debian/control | awk -F': ' '{print $2}' | sed -E 's/-[0-9]+$//')
+NPMVERSION=$(grep Version debian/control | awk -F': ' '{print $2}' | sed -E 's/-[0-9]+$//' | sed -E 's/~/-/')
 STARTDIR="$(pwd)"
 DESTDIR="$STARTDIR/pkg"
 OUTDIR="$STARTDIR/deb"
