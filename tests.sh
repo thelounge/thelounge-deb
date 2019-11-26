@@ -5,7 +5,7 @@ set -euo pipefail
 DEBVERSION=$(grep Version debian/control | awk -F': ' '{print $2}')
 DEBARCH=$(grep Architecture debian/control | awk -F': ' '{print $2}')
 DEBFILE="deb/thelounge_${DEBVERSION}_${DEBARCH}.deb"
-NPMVERSION=$(echo "${DEBVERSION}" | sed -E 's/-[0-9]+$//')
+NPMVERSION=$(echo "${DEBVERSION}" | sed -E 's/-[0-9]+$//' | sed -E 's/~/-/')
 
 # Exit status code to update if there is a failure
 CODE=0
