@@ -118,11 +118,11 @@ else
 fi
 
 SYSTEMCTL_URL=$(echo "${SYSTEMCTL_STATUS}" | grep "Available at")
-if [[ "$SYSTEMCTL_URL" = *"http://:::9000/"* ]]; then
+if [[ "$SYSTEMCTL_URL" = *"http://[::]:9000/"* ]]; then
   echo -e "  \\x1B[32m✓\\x1B[0m \\x1B[90mshows correct URL in systemctl logs\\x1B[0m"
 else
   echo -e "  \\x1B[31m✗ does not show up correct URL in systemctl logs\\x1B[0m"
-  echo -e "      \\x1B[32mexpected: Available at http://:::9000/\\x1B[0m"
+  echo -e "      \\x1B[32mexpected: Available at http://[::]:9000/\\x1B[0m"
   echo -e "      \\x1B[31mactual:   ${SYSTEMCTL_URL}\\x1B[0m"
   echo
   CODE=1
