@@ -29,7 +29,7 @@ After this, you should have a nice `.deb` file in the `deb/` output folder! This
 
 ### Configuration
 
-The default system-wide documentation file is located at `/etc/thelounge/config.js`. Please note that user profiles and their IRC passwords are also stored there, so the directory is only readable by the `thelounge` user.
+The default system-wide configuration file is located at `/etc/thelounge/config.js`. Please note that user profiles and their IRC passwords are also stored there, so the directory is only readable by the `thelounge` user.
 
 ### Running
 
