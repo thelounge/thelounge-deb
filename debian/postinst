@@ -3,21 +3,26 @@ set -euo pipefail
 
 [[ "$1" == "configure" ]] || exit 0
 
-echo 'Downloading sqlite3 module for your specific installation'
+ARCH="$(uname -m)"
 
-# Install sqlite3 into a clean folder with yarn binary that comes with The Lounge
-node /usr/lib/node_modules/thelounge/node_modules/yarn/bin/yarn.js \
-	--cache-folder /usr/lib/node_modules/thelounge/debian_postinst_yarn_cache \
-	--cwd /usr/lib/node_modules/thelounge \
-	--non-interactive \
-	--no-default-rc \
-	--production \
-|| echo '[!!] Failed to install sqlite3 module correctly, The Lounge will continue working, but you might want to fix this.'
+if [ "$ARCH" != "x86_64" ]
+then
+	echo 'Downloading sqlite3 module for your specific installation'
 
-echo 'Removing leftover files'
+	# Install sqlite3 into a clean folder with yarn binary that comes with The Lounge
+	node /usr/lib/node_modules/thelounge/node_modules/yarn/bin/yarn.js \
+		--cache-folder /usr/lib/node_modules/thelounge/debian_postinst_yarn_cache \
+		--cwd /usr/lib/node_modules/thelounge \
+		--non-interactive \
+		--no-default-rc \
+		--production \
+	|| echo '[!!] Failed to install sqlite3 module correctly, The Lounge will continue working, but you might want to fix this.'
 
-# Remove left over folder which is no longer required
-rm --recursive --force /usr/lib/node_modules/thelounge/debian_postinst_yarn_cache/
+	echo 'Removing leftover files'
+
+	# Remove left over folder which is no longer required
+	rm --recursive --force /usr/lib/node_modules/thelounge/debian_postinst_yarn_cache/
+fi
 
 if ! getent group thelounge >/dev/null; then
 	echo 'Creating thelounge group'
