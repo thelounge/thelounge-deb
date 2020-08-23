@@ -53,6 +53,14 @@ else
   CODE=1
 fi
 
+# sqlite binding should be installed correctly at runtime
+if [ "$(ls -A /usr/lib/node_modules/thelounge/node_modules/sqlite3/lib/binding/)" ]; then
+  echo -e "  \\x1B[32m✓\\x1B[0m \\x1B[90msqlite binding exists\\x1B[0m"
+else
+  echo -e "  \\x1B[31m✗ sqlite binding does not exist\\x1B[0m"
+  CODE=1
+fi
+
 # If the service was correctly set up with systemd, it should show in the big
 # `sudo systemctl` list.
 SYSTEMCTL_LIST=$(sudo systemctl | grep "thelounge.service")
