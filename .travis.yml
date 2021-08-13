@@ -4,9 +4,9 @@ sudo: required
 language: minimal
 
 env:
+  - NODE_VERSION=16 # EOL: April 2024 
   - NODE_VERSION=14 # EOL: April 2023
   - NODE_VERSION=12 # EOL: April 2022
-  - NODE_VERSION=10 # EOL: April 2021
 
 notifications:
   email:
@@ -34,7 +34,7 @@ deploy:
     file_glob: true
     skip_cleanup: true
     on:
-      condition: "$NODE_VERSION = 10"
+      condition: "$NODE_VERSION = 12"
       repo: thelounge/thelounge-deb
       tags: true
 
@@ -46,6 +46,6 @@ deploy:
     file_glob: true
     skip_cleanup: true
     on:
-      condition: "$NODE_VERSION = 10"
+      condition: "$NODE_VERSION = 12"
       repo: thelounge/thelounge-deb
       tags: true
