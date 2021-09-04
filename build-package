@@ -29,7 +29,7 @@ npm install -g --no-optional --prefix "$DESTDIR/usr" "thelounge@${NPMVERSION}"
 echo "/etc/thelounge" > "$DESTDIR/usr/lib/node_modules/thelounge/.thelounge_home"
 
 # Install configuration/home directory
-install -dm775 "$DESTDIR/etc/thelounge"
+install -dm700 "$DESTDIR/etc/thelounge"
 install -dm770 "$DESTDIR/etc/thelounge/users"
 install -Dm660 \
 	"$DESTDIR/usr/lib/node_modules/thelounge/defaults/config.js" \
