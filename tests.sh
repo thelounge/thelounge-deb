@@ -28,7 +28,7 @@ if [ -e "$DEBFILE" ]; then
   FILESIZE=$(ls -l "$DEBFILE" | awk '{print $5}')
   HUMANSIZE=$(ls -lh "$DEBFILE" | awk '{print $5}')
   MINSIZE=3
-  MAXSIZE=15
+  MAXSIZE=25
 
   if [ "$FILESIZE" -gt "$((MINSIZE * 1024 * 1024))" ] &&
      [ "$FILESIZE" -lt "$((MAXSIZE * 1024 * 1024))" ]; then
