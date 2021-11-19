@@ -40,9 +40,6 @@ install -Dm644 "$STARTDIR/systemd/system.service" \
 	"$DESTDIR/lib/systemd/system/thelounge.service"
 install -Dm644 "$STARTDIR/systemd/user.service" \
 	"$DESTDIR/usr/lib/systemd/user/thelounge.service"
-install -dm755 "$DESTDIR/lib/systemd/system/multi-user.target.wants"
-ln -s "../thelounge.service" \
-	"$DESTDIR/lib/systemd/system/multi-user.target.wants/thelounge.service"
 
 # Build .deb
 mkdir "$DESTDIR/DEBIAN" "$OUTDIR"

@@ -33,5 +33,6 @@ if ! getent passwd thelounge >/dev/null; then
 fi
 
 chown -R thelounge:thelounge /etc/thelounge
-systemctl daemon-reload
-systemctl start thelounge.service
+
+deb-systemd-helper enable thelounge.service
+deb-systemd-invoke start thelounge.service || echo "could not start thelounge.service automatically"

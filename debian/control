@@ -3,7 +3,7 @@ Version: 4.3.0~rc.1
 Section: net
 Priority: optional
 Architecture: all
-Depends: nodejs (>= 12.13.0), bash
+Depends: nodejs (>= 12.13.0), bash, init-system-helpers
 Provides: lounge
 Conflicts: lounge
 Replaces: lounge
