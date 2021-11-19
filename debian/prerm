@@ -1,2 +1,5 @@
 #!/bin/bash
-systemctl stop thelounge.service
+deb-systemd-invoke stop thelounge.service
+if [ "$1" = "remove" ]; then
+	deb-systemd-helper purge thelounge.service
+fi
