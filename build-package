@@ -46,4 +46,4 @@ install -Dm644 "$STARTDIR/systemd/user.service" \
 # Build .deb
 mkdir "$DESTDIR/DEBIAN" "$OUTDIR"
 cp "$STARTDIR/debian/"* "$DESTDIR/DEBIAN/"
-dpkg-deb --build "$DESTDIR" "$OUTDIR"
+dpkg-deb --root-owner-group --build "$DESTDIR" "$OUTDIR"
