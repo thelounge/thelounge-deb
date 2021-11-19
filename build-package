@@ -16,6 +16,7 @@ NPMVERSION=$(grep Version debian/control | awk -F': ' '{print $2}' | sed -E 's/-
 STARTDIR="$(pwd)"
 DESTDIR="$STARTDIR/pkg"
 OUTDIR="$STARTDIR/deb"
+NPMCACHE="$STARTDIR/npm_cache"
 
 echo "Building $NPMVERSION..."
 
@@ -23,7 +24,8 @@ echo "Building $NPMVERSION..."
 rm -rf "$DESTDIR" "$OUTDIR"
 
 # Install the package itself
-npm install -g --no-optional --prefix "$DESTDIR/usr" "thelounge@${NPMVERSION}"
+ npm install -g --no-optional --cache "$NPMCACHE" --prefix "$DESTDIR/usr" \
+	"thelounge@${NPMVERSION}"
 
 # Write .thelounge_home to set correct system config directory
 echo "/etc/thelounge" > "$DESTDIR/usr/lib/node_modules/thelounge/.thelounge_home"
