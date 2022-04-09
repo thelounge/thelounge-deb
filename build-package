@@ -16,25 +16,40 @@ NPMVERSION=$(grep Version debian/control | awk -F': ' '{print $2}' | sed -E 's/-
 STARTDIR="$(pwd)"
 DESTDIR="$STARTDIR/pkg"
 OUTDIR="$STARTDIR/deb"
-NPMCACHE="$STARTDIR/npm_cache"
+CACHE="$STARTDIR/cache"
+MODULES_DIR="$DESTDIR/usr/lib/thelounge/node_modules"
+export HOME="$STARTDIR" # because yarn is stupid and tries to mess with the user config files
 
 echo "Building $NPMVERSION..."
 
 # Remove potential leftovers from a previous build
 rm -rf "$DESTDIR" "$OUTDIR"
 
+install -dm755 "$DESTDIR/usr/bin"
+install -dm755 "$MODULES_DIR/thelounge"
+
+# Fetch the lock file so that we actually get the pinned deps that we want
+curl -O "https://raw.githubusercontent.com/thelounge/thelounge/$NPMVERSION/yarn.lock"
+
 # Install the package itself
- npm install -g --no-optional --cache "$NPMCACHE" --prefix "$DESTDIR/usr" \
+# we on purposes don't use yarn global add, because with it --ignore-scripts
+# is pointless: https://github.com/yarnpkg/yarn/issues/8291 but we tried
+yarn add --no-default-rc --frozen-lockfile \
+	--prod --non-interactive --ignore-scripts \
+	--cache-folder "$CACHE" --modules-folder "$MODULES_DIR" \
 	"thelounge@${NPMVERSION}"
 
 # Write .thelounge_home to set correct system config directory
-echo "/etc/thelounge" > "$DESTDIR/usr/lib/node_modules/thelounge/.thelounge_home"
+echo "/etc/thelounge" > "$MODULES_DIR/thelounge/.thelounge_home"
+
+# manually write the binary link
+ln -s "${MODULES_DIR#$DESTDIR}/thelounge/index.js" "$DESTDIR/usr/bin/thelounge"
 
 # Install configuration/home directory
 install -dm775 "$DESTDIR/etc/thelounge"
 install -dm770 "$DESTDIR/etc/thelounge/users"
 install -Dm660 \
-	"$DESTDIR/usr/lib/node_modules/thelounge/defaults/config.js" \
+	"$MODULES_DIR/thelounge/defaults/config.js" \
 	"$DESTDIR/etc/thelounge/config.js"
 
 # Install systemd units

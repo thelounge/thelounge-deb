@@ -3,21 +3,24 @@ set -euo pipefail
 
 [[ "$1" == "configure" ]] || exit 0
 
-echo 'Downloading sqlite3 module for your specific installation'
-
-# Install sqlite3 into a clean folder with yarn binary that comes with The Lounge
-node /usr/lib/node_modules/thelounge/node_modules/yarn/bin/yarn.js \
-	--cache-folder /usr/lib/node_modules/thelounge/debian_postinst_yarn_cache \
-	--cwd /usr/lib/node_modules/thelounge \
-	--non-interactive \
-	--no-default-rc \
-	--production \
-|| echo '[!!] Failed to install sqlite3 module correctly, The Lounge will continue working, but you might want to fix this.'
-
-echo 'Removing leftover files'
-
-# Remove left over folder which is no longer required
-rm --recursive --force /usr/lib/node_modules/thelounge/debian_postinst_yarn_cache/
+echo 'Downloading or building sqlite3 module for your specific installation'
+echo This might take several minutes, depending on your processor speed
+pushd /usr/lib/thelounge/node_modules/sqlite3
+garbage_folder=./garbage42
+install -dm 750 "$garbage_folder"
+# make sure we aren't writing to any other dir
+# in theory the devdir should be enough but let's future proof it
+export npm_config_devdir="$garbage_folder"
+export HOME="$garbage_folder"
+./node_modules/.bin/node-pre-gyp clean
+./node_modules/.bin/node-pre-gyp install --fallback-to-build
+ret=$?
+rm -rf "$garbage_folder"
+popd
+if [ $ret -ne 0 ]
+then
+	echo '[!!] Failed to install sqlite3 module correctly, The Lounge will continue working, but you might want to fix this.'
+fi
 
 if ! getent group thelounge >/dev/null; then
 	echo 'Creating thelounge group'
