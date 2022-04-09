@@ -46,7 +46,8 @@ else
 fi
 
 # sqlite should be installed correctly at runtime
-if [ -e "/usr/lib/node_modules/thelounge/node_modules/sqlite3/package.json" ]; then
+# the glob is the name of the api/os/arch triplet, say napi-v3-linux-arm
+if ls /usr/lib/thelounge/node_modules/sqlite3/lib/binding/**/node_sqlite3.node >/dev/null 2>&1 ; then
   echo -e "  \\x1B[32m✓\\x1B[0m \\x1B[90msqlite was installed correctly at runtime\\x1B[0m"
 else
   echo -e "  \\x1B[31m✗ sqlite was not installed at runtime\\x1B[0m"
