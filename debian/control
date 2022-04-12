@@ -1,10 +1,10 @@
 Package: thelounge
-Version: 4.3.1
+Version: 4.3.1-2
 Section: net
 Priority: optional
 Architecture: all
 Depends: nodejs (>= 12.13.0), bash, init-system-helpers
-Recommends: python, build-essential
+Recommends: python3, build-essential
 Maintainer: The Lounge maintainers team <security@thelounge.chat>
 Description: A self-hosted, web-based IRC client
 Homepage: https://thelounge.chat
