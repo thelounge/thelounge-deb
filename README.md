@@ -1,10 +1,8 @@
 # Debian/Ubuntu package for The Lounge
 
-<a href="https://travis-ci.com/thelounge/thelounge-deb">
-	<img
-		alt="Travis CI Build Status"
-		src="https://img.shields.io/travis/com/thelounge/thelounge-deb/master.svg?style=flat-square">
-</a>
+<a href="https://github.com/thelounge/thelounge-deb/actions"><img
+	alt="Build Status"
+	src="https://github.com/thelounge/thelounge-deb/workflows/Build/badge.svg"></a>
 
 This repository holds out the build scripts that generates our `.deb` precompiled packages and also tracks Debian-specific issues in relation to the packaging.
 
