@@ -36,6 +36,13 @@ jobs:
       - name: Journal
         run: sudo systemctl --full status thelounge.service
 
+      - name: Upload artifact
+        if: ${{ matrix.node_version == '16.x' }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: thelounge.deb
+          path: deb/*.deb
+
       - name: Release
         if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && matrix.node_version == '16.x' }}
         uses: softprops/action-gh-release@v1
