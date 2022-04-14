@@ -35,3 +35,9 @@ jobs:
 
       - name: Journal
         run: sudo systemctl --full status thelounge.service
+
+      - name: Release
+        if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && matrix.node_version == '16.x' }}
+        uses: softprops/action-gh-release@v1
+        with:
+          files: deb/*.deb
