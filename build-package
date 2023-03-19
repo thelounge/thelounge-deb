@@ -49,7 +49,7 @@ ln -s "${MODULES_DIR#$DESTDIR}/thelounge/index.js" "$DESTDIR/usr/bin/thelounge"
 install -dm775 "$DESTDIR/etc/thelounge"
 install -dm770 "$DESTDIR/etc/thelounge/users"
 install -Dm660 \
-	"$MODULES_DIR/thelounge/defaults/config.js" \
+	"$MODULES_DIR/thelounge/dist/defaults/config.js" \
 	"$DESTDIR/etc/thelounge/config.js"
 
 # Install systemd units
