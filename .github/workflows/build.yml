@@ -12,6 +12,7 @@ jobs:
             14.x, # EOL: April 2023
             16.x, # EOL: April 2024
             18.x, # EOL: April 2025
+            20.x, # EOL: April 2026
           ]
 
     steps:
