@@ -3,7 +3,7 @@ Version: 4.4.1
 Section: net
 Priority: optional
 Architecture: all
-Depends: nodejs (>= 16.0.0), bash, init-system-helpers
+Depends: nodejs (>= 18.0.0), bash, init-system-helpers
 Recommends: python3, build-essential
 Maintainer: The Lounge maintainers team <security@thelounge.chat>
 Description: A self-hosted, web-based IRC client
