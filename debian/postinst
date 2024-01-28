@@ -10,8 +10,7 @@ install -dm 750 "$garbage_folder"
 # in theory the devdir should be enough but let's future proof it
 export npm_config_devdir="$garbage_folder"
 export HOME="$garbage_folder"
-./node_modules/.bin/node-pre-gyp clean
-./node_modules/.bin/node-pre-gyp install --fallback-to-build
+yarn run install # download or build the c dep
 ret=$?
 rm -rf "$garbage_folder"
 popd || exit 1
