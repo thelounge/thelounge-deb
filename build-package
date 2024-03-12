@@ -46,7 +46,7 @@ echo "/etc/thelounge" > "$MODULES_DIR/thelounge/.thelounge_home"
 ln -s "${MODULES_DIR#$DESTDIR}/thelounge/index.js" "$DESTDIR/usr/bin/thelounge"
 
 # Install configuration/home directory
-install -dm775 "$DESTDIR/etc/thelounge"
+install -dm700 "$DESTDIR/etc/thelounge"
 install -dm770 "$DESTDIR/etc/thelounge/users"
 install -Dm660 \
 	"$MODULES_DIR/thelounge/dist/defaults/config.js" \
