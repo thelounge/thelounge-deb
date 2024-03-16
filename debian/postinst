@@ -10,7 +10,7 @@ install -dm 750 "$garbage_folder"
 # in theory the devdir should be enough but let's future proof it
 export npm_config_devdir="$garbage_folder"
 export HOME="$garbage_folder"
-yarn run install # download or build the c dep
+/usr/lib/thelounge/node_modules/yarn/bin/yarn run install # download or build the c dep
 ret=$?
 rm -rf "$garbage_folder"
 popd || exit 1
