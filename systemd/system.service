@@ -9,9 +9,25 @@ User=thelounge
 Group=thelounge
 Type=simple
 ExecStart=/usr/bin/thelounge start
+
+# Hardening
+LockPersonality=yes
 ProtectSystem=yes
+ProtectClock=yes
+ProtectControlGroups=yes
 ProtectHome=yes
+ProtectHostname=yes
+ProtectKernelLogs=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+ProtectProc=invisible
+RemoveIPC=yes
+# cacheable-lookup module requires AF_NETLINK
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX AF_NETLINK
+RestrictNamespaces=yes
+RestrictRealtime=yes
 NoNewPrivileges=yes
+PrivateDevices=yes
 PrivateTmp=yes
 
 [Install]
