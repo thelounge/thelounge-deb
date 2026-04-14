@@ -12,8 +12,7 @@ jobs:
     strategy:
       matrix:
         node_version: [
-            18.x, # EOL: April 2025
-            20.x, # EOL: April 2026
+            22.x, # EOL: April 2027
           ]
 
     steps:
