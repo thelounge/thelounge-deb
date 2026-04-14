@@ -45,15 +45,6 @@ else
   echo -e "  \\x1B[36m- file size could not be checked\\x1B[0m"
 fi
 
-# sqlite should be installed correctly at runtime
-# the glob is the name of the api/os/arch triplet, say napi-v3-linux-arm
-if ls /usr/lib/thelounge/node_modules/sqlite3/build/Release/node_sqlite3.node >/dev/null 2>&1 ; then
-  echo -e "  \\x1B[32m✓\\x1B[0m \\x1B[90msqlite was installed correctly at runtime\\x1B[0m"
-else
-  echo -e "  \\x1B[31m✗ sqlite was not installed at runtime\\x1B[0m"
-  CODE=1
-fi
-
 # If the service was correctly set up with systemd, it should show in the big
 # `sudo systemctl` list.
 SYSTEMCTL_LIST=$(sudo systemctl | grep "thelounge.service")

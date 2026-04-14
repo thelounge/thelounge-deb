@@ -1,24 +1,6 @@
 #!/bin/bash
 [[ "$1" == "configure" ]] || exit 0
 
-echo 'Downloading or building sqlite3 module for your specific installation'
-echo This might take several minutes, depending on your processor speed
-pushd /usr/lib/thelounge/node_modules/sqlite3 || exit 1
-garbage_folder=./garbage42
-install -dm 750 "$garbage_folder"
-# make sure we aren't writing to any other dir
-# in theory the devdir should be enough but let's future proof it
-export npm_config_devdir="$garbage_folder"
-export HOME="$garbage_folder"
-/usr/lib/thelounge/node_modules/yarn/bin/yarn run install # download or build the c dep
-ret=$?
-rm -rf "$garbage_folder"
-popd || exit 1
-if [ $ret -ne 0 ]
-then
-	echo '[!!] Failed to install sqlite3 module correctly, The Lounge will continue working, but you might want to fix this.'
-fi
-
 if ! getent group thelounge >/dev/null; then
 	echo 'Creating thelounge group'
 	addgroup --quiet --system thelounge
