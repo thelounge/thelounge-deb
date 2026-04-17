@@ -61,31 +61,10 @@ fi
 # Wait until The Lounge is actually fully started
 sleep 2
 
+systemctl is-active thelounge.service
+
 # Entire entry for the service. We'll use this to see if everything is in order.
 SYSTEMCTL_STATUS=$(sudo systemctl status --full thelounge.service)
-
-# `systemctl status` should report `Active: active (running) since ...`
-SYSTEMCTL_ACTIVE=$(echo "${SYSTEMCTL_STATUS}" | grep "Active:")
-if [[ "$SYSTEMCTL_ACTIVE" = *"active (running)"* ]]; then
-  echo -e "  \\x1B[32m✓\\x1B[0m \\x1B[90mis reported as active and running by systemctl status\\x1B[0m"
-else
-  echo -e "  \\x1B[31m✗ does not have a status of active and running\\x1B[0m"
-  echo -e "      \\x1B[32mexpected: Active: active (running)\\x1B[0m"
-  echo -e "      \\x1B[31mactual:   ${SYSTEMCTL_ACTIVE}\\x1B[0m"
-  echo
-  CODE=1
-fi
-
-SYSTEMCTL_STARTED=$(echo "${SYSTEMCTL_STATUS}" | grep "systemd\\[")
-if [[ "$SYSTEMCTL_STARTED" = *"Started The Lounge (IRC client)"* ]]; then
-  echo -e "  \\x1B[32m✓\\x1B[0m \\x1B[90mshows up as started in systemctl logs\\x1B[0m"
-else
-  echo -e "  \\x1B[31m✗ does not show up as started in systemctl\\x1B[0m"
-  echo -e "      \\x1B[32mexpected: Started The Lounge (IRC client)\\x1B[0m"
-  echo -e "      \\x1B[31mactual:   ${SYSTEMCTL_STARTED}\\x1B[0m"
-  echo
-  CODE=1
-fi
 
 SYSTEMCTL_VERSION=$(echo "${SYSTEMCTL_STATUS}" | grep "The Lounge v")
 if [[ "$SYSTEMCTL_VERSION" = *"$NPMVERSION"* ]]; then

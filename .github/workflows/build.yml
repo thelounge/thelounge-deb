@@ -16,14 +16,23 @@ jobs:
           ]
 
     steps:
-      - uses: actions/checkout@master
-
+      - uses: actions/checkout@v6
       - name: Setup Node.js
         env:
           NODE_VERSION: ${{ matrix.node_version }}
         run: |
           curl -sL https://deb.nodesource.com/setup_$NODE_VERSION | sudo -E bash -
           sudo apt-get install -y nodejs
+
+      - name: remove non system node
+        run: |
+          sudo rm /usr/local/bin/node # we have node, nuke the foreign version from the actions
+
+      - name: versions
+        run: |
+          which node
+          node --version
+          yarn --version
 
       - name: Build package
         run: ./build-package
