@@ -29,7 +29,7 @@ install -dm755 "$DESTDIR/usr/bin"
 install -dm755 "$MODULES_DIR/thelounge"
 
 # Fetch the lock file so that we actually get the pinned deps that we want
-curl -O "https://raw.githubusercontent.com/thelounge/thelounge/$NPMVERSION/yarn.lock"
+curl -O "https://raw.githubusercontent.com/thelounge/thelounge/v$NPMVERSION/yarn.lock"
 
 # Install the package itself
 # we on purposes don't use yarn global add, because with it --ignore-scripts
